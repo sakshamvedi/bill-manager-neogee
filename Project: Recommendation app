@@ -1,0 +1,57 @@
+import React from 'react'
+
+function Books() {
+
+  const [state, setState] = React.useState([]);
+  const[arr ,setArr] = React.useState([ {name : " " , rating :""} , {name : "" , rating : ""}]);
+
+  function react()
+  {
+    setState([ {name : "the react ship " , rating :"4/5"} , {name : "Hook Wizards" , rating : "4.5/5"}])
+    setArr(state);
+  }
+
+
+function datas()
+{
+
+  setState([ {name : " Introduction to Algorithms " , rating :"4/5"} , {name : "Data Structures and Algorithms Made Easy" , rating : "4.5/5"}])
+  setArr(state);
+
+
+}
+
+function loves()
+{
+  setState([ {name : " The Proposal by Jasmine Guillors " , rating :"4/5"} , {name : ". The Hating Game by Sally Thorne " , rating : "4.5/5"}])
+  setArr(state);
+
+}
+
+
+  return (
+   <>
+   <div className='container'>
+   <h1>Trending Books ❤️</h1>
+   <span className='btn'><button onClick={react}>React</button>
+   <button onClick={datas}>Data-Structures</button>
+   <button onClick={loves}>Love & Romance</button>
+   </span>
+
+   {
+    arr.map((data)=>{
+   return (
+    <>
+    <ul><li> 📕{data.name}</li>
+    <small> ⭐ {data.rating}</small></ul>
+    </>
+   )
+    })
+   }
+
+    
+    </div></>
+  )
+}
+
+export default Books
