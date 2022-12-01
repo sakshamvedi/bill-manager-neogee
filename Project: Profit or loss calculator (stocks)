@@ -1,0 +1,47 @@
+import React, { useState } from 'react'
+
+
+function Stocks() {
+    const [buy , setBuy] = useState("");
+const [sell, setsell] = useState("")
+const [stocks, setstocks] = useState("");
+const [ans, setans] = useState("")
+
+
+function fun()
+{var initial = buy;
+    var current = sell;
+    var quantity = stocks;
+
+    if (initial > current) {
+        var loss = (initial - current) * quantity;
+        var lossPercentage = (loss / initial) * 100;
+    
+        setans(-lossPercentage+"loss ⬇️")
+      } else if (current > initial) {
+        var profit = (current - initial) * quantity;
+        var profitPercentage = (profit / initial) * 100;
+     setans(+profitPercentage + "% profit🎯")
+       
+      } else {
+        setans("np pain no gain")
+      }
+}
+
+  return (
+   <>
+   <div className="container">
+    <label>Buying Price</label>
+    <input onChange={(e)=>setBuy(e.target.value)} />
+    <label>Stocks Owned</label>
+    <input onChange={(e)=>setstocks(e.target.value)}/>
+    <label>Selling Price</label>
+    <input onChange={(e)=>setsell(e.target.value)} />
+    <button onClick={fun} >Check!!! </button>
+    <h1>{ans}</h1>
+   </div>
+   </>
+  )
+}
+
+export default Stocks
