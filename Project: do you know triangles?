@@ -1,0 +1,135 @@
+import React, { useState } from 'react'
+
+function Triangle() {
+    const [state , setState] = useState(true);
+    const [state1 , setState1] = useState(false);
+    const [state2 , setState2] = useState(false);
+    const [state3 , setState3] = useState(false);
+
+    const [angle , setAngle] = useState(0);
+    const [angle1 , setAngle1] = useState(0);
+    const [angle2 , setAngle2] = useState(0);
+    const [ans1, setAns1] = useState(0);
+    const [ans2, setAns2] = useState(0);
+ const [ans , setAns] = useState("No Triangle Formed");
+ function check()
+ {
+    let sum  = parseInt(angle)+parseInt(angle1)+parseInt(angle2)
+    console.log(sum);
+    if(sum==180)
+    {
+        setAns("Yeah ! you find a triangle")
+    }
+    else{
+        setAns("No triangle formed ")
+    }
+ }
+
+function findhyp()
+{
+    let b = parseInt(angle);
+    let h  = parseInt(angle1);
+    const value = Math.sqrt((b*b)+(h*h));
+    setAns1(value);
+}
+
+function fun1(){
+    setState(true);
+    setState1(false);
+    setState2(false);
+    setState3(false);
+}
+
+function fun2()
+{
+    setState(false);
+    setState1(true);
+    setState2(false);
+    setState3(false);
+
+}
+function fun3()
+{
+    setState(false);
+    setState1(false);
+    setState2(false);
+    setState3(true);
+}
+
+
+function area()
+{
+    let a = parseInt(angle);
+    let b = parseInt(angle1);
+    let c = parseInt(angle2);
+    const s = (a+b+c)/2;
+    let x = s-a;
+    let y = s-b;
+    let z = s-c;
+    const result = Math.sqrt(
+        s *
+          (s - a) *
+          (s - b) *
+          (s - c)
+      ).toFixed(4);
+    setAns2(result);
+
+}
+
+  return (
+   <>
+   <navbar>
+    <h1>Fun With Triangle</h1>
+    <div className='flex-box'>
+        <p1 onClick = {fun1}>Is a Triangle ?</p1>
+        <p1 onClick = {fun2}>Hypotenuse</p1>
+        <p1 onClick = {fun3}>Area of Triangle</p1>
+    </div>
+   </navbar>
+   
+   {
+
+state &&  <div className='container'>
+<label>Angle 1</label>
+<input type={"number"} onChange={(e)=>{setAngle(e.target.value)}}/>
+<label>Angle 2</label>
+<input type={"number"}  onChange={(e)=>{setAngle1(e.target.value)}}  />
+<label>Angle 3</label>
+<input type={"number"}  onChange={(e)=>{setAngle2(e.target.value)}} />
+<button onClick={check}>Check </button>
+<h1>{ans}</h1>
+</div>
+
+   }
+
+   {
+    state1 && 
+    <div className='container'>
+<label>Enter Base Value</label>
+<input type={"number"} onChange={(e)=>{setAngle(e.target.value)}}/>
+<label>Enter Height Value</label>
+<input type={"number"}  onChange={(e)=>{setAngle1(e.target.value)}}  />
+<button onClick={findhyp}>Find Hypotenuse</button>
+<h1>{ans1}</h1>
+</div>
+   }
+
+{
+    state3 &&  <div className='container'>
+    <label>Enter side a </label>
+    <input type={"number"} onChange={(e)=>{setAngle(e.target.value)}}/>
+    <label>Enter side b </label>
+    <input type={"number"}  onChange={(e)=>{setAngle1(e.target.value)}}  />
+    <label>enter side c </label>
+    <input type={"number"}  onChange={(e)=>{setAngle2(e.target.value)}}  />
+
+    <button onClick={area}>Find Area</button>
+    <h1>{ans2}</h1>
+    </div>
+}
+
+   </>
+  )
+}
+
+export default Triangle;
